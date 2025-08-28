@@ -10,9 +10,9 @@ const Portfolio = () => {
     <main className="relative">
       <Navigation />
       <HeroSection />
-      <AboutSection />
-      <SkillsSection />
       <ProjectsSection />
+      <SkillsSection />
+      <AboutSection />
       <ContactSection />
       
       {/* Footer */}

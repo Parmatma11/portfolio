@@ -57,9 +57,9 @@ const ContactSection = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
+    { icon: Github, href: 'https://github.com/Parmatma11/', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/krishan-kaushik-8b2518232/', label: 'LinkedIn' },
+    // { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' }
   ];
 
   return (

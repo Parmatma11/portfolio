@@ -79,7 +79,7 @@ const HeroSection = () => {
 
           <div className="flex items-center justify-center space-x-6">
             <a 
-              href="https://github.com" 
+              href="https://github.com/Parmatma11/" 
               className="p-3 glass rounded-full border border-primary/20 text-primary hover:bg-primary/10 transition-all duration-300 hover:scale-110 glow-primary"
               target="_blank"
               rel="noopener noreferrer"
@@ -87,7 +87,7 @@ const HeroSection = () => {
               <Github className="w-6 h-6" />
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/krishan-kaushik-8b2518232/" 
               className="p-3 glass rounded-full border border-secondary/20 text-secondary hover:bg-secondary/10 transition-all duration-300 hover:scale-110 glow-secondary"
               target="_blank"
               rel="noopener noreferrer"
@@ -95,7 +95,7 @@ const HeroSection = () => {
               <Linkedin className="w-6 h-6" />
             </a>
             <a 
-              href="mailto:alex@example.com" 
+              href="mailto:krishankaushik1002@gmail.com" 
               className="p-3 glass rounded-full border border-accent/20 text-accent hover:bg-accent/10 transition-all duration-300 hover:scale-110 glow-accent"
             >
               <Mail className="w-6 h-6" />

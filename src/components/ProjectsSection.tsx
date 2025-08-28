@@ -8,48 +8,48 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
-      title: 'AI-Powered Analytics Dashboard',
-      description: 'A comprehensive dashboard that uses machine learning to provide real-time business insights with predictive analytics.',
-      image: '/placeholder-project-1.jpg',
-      tech: ['React', 'TypeScript', 'Python', 'TensorFlow', 'AWS'],
+      title: 'Notiva Docs - Your Digital Notebook for Academic Success',
+      description: 'Upload handwritten notes, organize by subjects, and access them anywhere.Automatically convert images to PDFs with our smart application.',
+      image: '/notiva1.jpg',
+      tech: ['React', 'TypeScript', 'Next.js', 'Supabase'],
       category: 'fullstack',
-      demoUrl: 'https://demo.example.com',
+      demoUrl: 'https://notiva-docs.vercel.app/',
       githubUrl: 'https://github.com/example/project',
       featured: true
     },
     {
       id: 2,
-      title: 'Blockchain Trading Platform',
-      description: 'Secure cryptocurrency trading platform with real-time market data, advanced charting, and portfolio management.',
-      image: '/placeholder-project-2.jpg',
-      tech: ['Next.js', 'Node.js', 'Solidity', 'Web3', 'PostgreSQL'],
+      title: 'PG Duniya - Find Best Paying Guest Property for Students',
+      description: 'A comprehensive platform for students to find and book PG accommodations with verified listings.',
+      image: '/pg.jpg',
+      tech: ['Next.js', 'Node.js', 'React', 'MongoDB', 'TypeScript'],
       category: 'blockchain',
-      demoUrl: 'https://demo.example.com',
+      demoUrl: 'https://pg-duniya.vercel.app/',
       githubUrl: 'https://github.com/example/project',
       featured: true
     },
-    {
-      id: 3,
-      title: 'AR Shopping Experience',
-      description: 'Augmented reality mobile app that allows users to visualize furniture and decor in their own space before purchasing.',
-      image: '/placeholder-project-3.jpg',
-      tech: ['React Native', 'ARKit', 'Three.js', 'Firebase', 'Stripe'],
-      category: 'mobile',
-      demoUrl: 'https://demo.example.com',
-      githubUrl: 'https://github.com/example/project',
-      featured: false
-    },
-    {
-      id: 4,
-      title: 'Social Media Analytics Tool',
-      description: 'Comprehensive social media management platform with AI-driven content recommendations and performance analytics.',
-      image: '/placeholder-project-4.jpg',
-      tech: ['Vue.js', 'Python', 'FastAPI', 'Redis', 'Chart.js'],
-      category: 'frontend',
-      demoUrl: 'https://demo.example.com',
-      githubUrl: 'https://github.com/example/project',
-      featured: false
-    }
+    // {
+    //   id: 3,
+    //   title: 'AR Shopping Experience',
+    //   description: 'Augmented reality mobile app that allows users to visualize furniture and decor in their own space before purchasing.',
+    //   image: '/placeholder-project-3.jpg',
+    //   tech: ['React Native', 'ARKit', 'Three.js', 'Firebase', 'Stripe'],
+    //   category: 'mobile',
+    //   demoUrl: 'https://demo.example.com',
+    //   githubUrl: 'https://github.com/example/project',
+    //   featured: false
+    // },
+    // {
+    //   id: 4,
+    //   title: 'Social Media Analytics Tool',
+    //   description: 'Comprehensive social media management platform with AI-driven content recommendations and performance analytics.',
+    //   image: '/placeholder-project-4.jpg',
+    //   tech: ['Vue.js', 'Python', 'FastAPI', 'Redis', 'Chart.js'],
+    //   category: 'frontend',
+    //   demoUrl: 'https://demo.example.com',
+    //   githubUrl: 'https://github.com/example/project',
+    //   featured: false
+    // }
   ];
 
   const categories = [
@@ -80,7 +80,7 @@ const ProjectsSection = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
             <Button
               key={category.id}
@@ -95,7 +95,7 @@ const ProjectsSection = () => {
               {category.label}
             </Button>
           ))}
-        </div>
+        </div> */}
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -109,8 +109,20 @@ const ProjectsSection = () => {
             >
               {/* Project Image */}
               <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10" />
-                <div className="absolute inset-0 flex items-center justify-center">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (nextElement) nextElement.style.display = 'flex';
+                    const fallbackElement = nextElement?.nextElementSibling as HTMLElement;
+                    if (fallbackElement) fallbackElement.style.display = 'flex';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 hidden" />
+                <div className="absolute inset-0 flex items-center justify-center hidden">
                   <Play className="w-16 h-16 text-primary/50 group-hover:text-primary transition-colors duration-300" />
                 </div>
                 {project.featured && (
@@ -171,7 +183,7 @@ const ProjectsSection = () => {
             size="lg"
             variant="outline"
             className="glass border-primary/30 text-primary hover:bg-primary/10 px-8 py-4"
-            onClick={() => window.open('https://github.com', '_blank')}
+            onClick={() => window.open('https://github.com/Parmatma11/', '_blank')}
           >
             View All Projects on GitHub
           </Button>
