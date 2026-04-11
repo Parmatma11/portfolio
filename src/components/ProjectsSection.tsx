@@ -14,7 +14,7 @@ const ProjectsSection = () => {
       tech: ['React', 'TypeScript', 'Next.js', 'Supabase'],
       category: 'fullstack',
       demoUrl: 'https://notiva-docs.vercel.app/',
-      githubUrl: 'https://github.com/example/project',
+      githubUrl: 'https://github.com/Parmatma11/NotivaDocs',
       featured: true
     },
     {
@@ -23,9 +23,31 @@ const ProjectsSection = () => {
       description: 'A comprehensive platform for students to find and book PG accommodations with verified listings.',
       image: '/pg.jpg',
       tech: ['Next.js', 'Node.js', 'React', 'MongoDB', 'TypeScript'],
-      category: 'blockchain',
+      category: 'fullstack',
       demoUrl: 'https://pg-duniya.vercel.app/',
-      githubUrl: 'https://github.com/example/project',
+      githubUrl: 'https://github.com/Parmatma11/PG-Duniya',
+      featured: true
+    },
+    {
+      id: 3,
+      title: 'CodeSage - AI-Code Analyzer',
+      description: 'CodeSage is a web application that uses artificial intelligence to analyze code and provide suggestions for improvement. It is a tool that can be used by developers to improve the quality of their code.',
+      image: '/codesage.jpg',
+      tech: ['Next.js', 'Node.js', 'React', 'Supabase', 'Javascript', 'Gemini Pro', 'Postgres SQL'],
+      category: 'fullstack',
+      demoUrl: 'https://codesage-chi.vercel.app/',
+      githubUrl: 'https://github.com/Parmatma11/AI-Analyzer',
+      featured: true
+    },
+    {
+      id: 4,
+      title: 'Lingovita - Foreign Language Learning Platform',
+      description: 'Lingovita is a web application that helps users learn foreign languages.',
+      image: '/lingovita.jpg',
+      tech: ['Next.js', 'Node.js', 'React', 'Supabase', 'Javascript', 'Postgres SQL'],
+      category: 'fullstack',
+      demoUrl: 'https://lingovanta.vercel.app/',
+      githubUrl: 'https://github.com/Parmatma11/french-institute',
       featured: true
     },
     // {
@@ -60,14 +82,14 @@ const ProjectsSection = () => {
     { id: 'blockchain', label: 'Blockchain' }
   ];
 
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'all'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-5" />
-      
+
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-orbitron font-bold text-4xl md:text-5xl lg:text-6xl mb-6 gradient-text">
@@ -102,15 +124,14 @@ const ProjectsSection = () => {
           {filteredProjects.map((project, index) => (
             <div
               key={project.id}
-              className={`glass rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:scale-105 group ${
-                project.featured ? 'md:col-span-2' : ''
-              }`}
+              className={`glass rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:scale-105 group ${project.featured ? 'md:col-span-2' : ''
+                }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
               <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover"
                   onError={(e) => {
