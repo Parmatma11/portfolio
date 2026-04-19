@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -16,11 +15,11 @@ const Navigation = () => {
         }
         return false;
       });
-      
+
       if (currentSection) {
         setActiveSection(currentSection);
       }
-      
+
       setScrolled(window.scrollY > 50);
     };
 
@@ -36,50 +35,59 @@ const Navigation = () => {
   };
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'HOME' },
+    { id: 'about', label: 'ABOUT' },
+    { id: 'skills', label: 'SKILLS' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'contact', label: 'CONTACT' },
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-      scrolled ? 'glass backdrop-blur-lg' : 'bg-transparent'
+    <nav className={`fixed top-0 w-full z-40 transition-all duration-150 border-b border-phosphor/15 ${
+      scrolled ? 'bg-surface-1/95 backdrop-blur-sm' : 'bg-surface-1/80'
     }`}>
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
-          <div className="font-orbitron font-bold text-xl gradient-text">
-            PORTFOLIO
-          </div>
-          
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Terminal Prompt Logo */}
+          <button
+            onClick={() => scrollToSection('home')}
+            className="font-mono font-bold text-sm tracking-wider"
+          >
+            <span className="text-phosphor glow-text">krishan</span>
+            <span className="text-silver">@</span>
+            <span className="text-cyan-term">dev</span>
+            <span className="text-silver">:~$ </span>
+            <span className="text-phosphor animate-cursor-blink">▊</span>
+          </button>
+
+          {/* Navigation Items */}
+          <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`relative px-4 py-2 font-medium transition-all duration-300 ${
+                className={`relative px-3 py-1.5 font-mono text-xs font-medium tracking-widest transition-all duration-75 ${
                   activeSection === item.id
-                    ? 'text-primary glow-primary'
-                    : 'text-muted-foreground hover:text-foreground'
+                    ? 'bg-phosphor text-black'
+                    : 'text-silver/70 hover:text-phosphor hover:bg-phosphor/5'
                 }`}
+                style={{ borderRadius: '2px' }}
               >
-                {item.label}
+                [{item.label}]
                 {activeSection === item.id && (
-                  <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full" />
+                  <div className="absolute -bottom-1 left-0 w-full h-[1px] bg-phosphor shadow-[0_0_10px_rgba(0,255,65,0.5)]" />
                 )}
               </button>
             ))}
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="glass border-primary/20 text-primary hover:bg-primary/10 glow-primary"
+          {/* CTA Button */}
+          <button
+            className="btn-terminal btn-terminal-secondary text-xs py-2 px-4"
             onClick={() => scrollToSection('contact')}
           >
-            Let's Talk
-          </Button>
+            [ LET'S_TALK ]
+          </button>
         </div>
       </div>
     </nav>

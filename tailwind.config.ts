@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				orbitron: ['Orbitron', 'monospace'],
-				inter: ['Inter', 'sans-serif'],
+				mono: ['"JetBrains Mono"', '"Fira Code"', '"Source Code Pro"', 'monospace'],
+				display: ['"Space Grotesk"', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,13 +66,17 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				neon: {
-					cyan: 'hsl(var(--neon-cyan))',
-					purple: 'hsl(var(--neon-purple))',
-					pink: 'hsl(var(--neon-pink))',
-					green: 'hsl(var(--neon-green))',
-					orange: 'hsl(var(--neon-orange))',
-				}
+				// Terminal palette
+				phosphor: '#00FF41',
+				'cyan-term': '#00D4AA',
+				'amber-term': '#FFB000',
+				'red-term': '#FF3333',
+				silver: '#C0C0C0',
+				'surface-0': '#0A0A0A',
+				'surface-1': '#0D0D0D',
+				'surface-2': '#111111',
+				'surface-3': '#161616',
+				'surface-4': '#1A1A1A',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -81,20 +85,12 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
 				}
 			},
 			animation: {

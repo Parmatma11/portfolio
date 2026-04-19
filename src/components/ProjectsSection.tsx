@@ -1,213 +1,163 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { ExternalLink, Github, Play } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 
 const ProjectsSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   const projects = [
     {
       id: 1,
-      title: 'Notiva Docs - Your Digital Notebook for Academic Success',
-      description: 'Upload handwritten notes, organize by subjects, and access them anywhere.Automatically convert images to PDFs with our smart application.',
+      title: 'NOTIVA_DOCS',
+      status: 'DEPLOYED',
+      description: 'Upload handwritten notes, organize by subjects, and access them anywhere. Automatically convert images to PDFs with smart processing.',
       image: '/notiva1.jpg',
       tech: ['React', 'TypeScript', 'Next.js', 'Supabase'],
-      category: 'fullstack',
       demoUrl: 'https://notiva-docs.vercel.app/',
       githubUrl: 'https://github.com/Parmatma11/NotivaDocs',
       featured: true
     },
     {
       id: 2,
-      title: 'PG Duniya - Find Best Paying Guest Property for Students',
+      title: 'PG_DUNIYA',
+      status: 'DEPLOYED',
       description: 'A comprehensive platform for students to find and book PG accommodations with verified listings.',
       image: '/pg.jpg',
       tech: ['Next.js', 'Node.js', 'React', 'MongoDB', 'TypeScript'],
-      category: 'fullstack',
       demoUrl: 'https://pg-duniya.vercel.app/',
       githubUrl: 'https://github.com/Parmatma11/PG-Duniya',
       featured: true
     },
     {
       id: 3,
-      title: 'CodeSage - AI-Code Analyzer',
-      description: 'CodeSage is a web application that uses artificial intelligence to analyze code and provide suggestions for improvement. It is a tool that can be used by developers to improve the quality of their code.',
-      image: '/codesage.jpg',
-      tech: ['Next.js', 'Node.js', 'React', 'Supabase', 'Javascript', 'Gemini Pro', 'Postgres SQL'],
-      category: 'fullstack',
+      title: 'CODESAGE',
+      status: 'DEPLOYED',
+      description: 'AI-powered code analyzer that provides suggestions for improvement using Gemini Pro.',
+      image: '/codesage.png',
+      tech: ['Next.js', 'React', 'Supabase', 'Gemini Pro', 'PostgreSQL'],
       demoUrl: 'https://codesage-chi.vercel.app/',
       githubUrl: 'https://github.com/Parmatma11/AI-Analyzer',
       featured: true
     },
     {
       id: 4,
-      title: 'Lingovita - Foreign Language Learning Platform',
-      description: 'Lingovita is a web application that helps users learn foreign languages.',
-      image: '/lingovita.jpg',
-      tech: ['Next.js', 'Node.js', 'React', 'Supabase', 'Javascript', 'Postgres SQL'],
-      category: 'fullstack',
+      title: 'LINGOVITA',
+      status: 'DEPLOYED',
+      description: 'Web application that helps users learn foreign languages with interactive lessons.',
+      image: '/lingovita.png',
+      tech: ['Next.js', 'React', 'Supabase', 'PostgreSQL'],
       demoUrl: 'https://lingovanta.vercel.app/',
       githubUrl: 'https://github.com/Parmatma11/french-institute',
       featured: true
     },
-    // {
-    //   id: 3,
-    //   title: 'AR Shopping Experience',
-    //   description: 'Augmented reality mobile app that allows users to visualize furniture and decor in their own space before purchasing.',
-    //   image: '/placeholder-project-3.jpg',
-    //   tech: ['React Native', 'ARKit', 'Three.js', 'Firebase', 'Stripe'],
-    //   category: 'mobile',
-    //   demoUrl: 'https://demo.example.com',
-    //   githubUrl: 'https://github.com/example/project',
-    //   featured: false
-    // },
-    // {
-    //   id: 4,
-    //   title: 'Social Media Analytics Tool',
-    //   description: 'Comprehensive social media management platform with AI-driven content recommendations and performance analytics.',
-    //   image: '/placeholder-project-4.jpg',
-    //   tech: ['Vue.js', 'Python', 'FastAPI', 'Redis', 'Chart.js'],
-    //   category: 'frontend',
-    //   demoUrl: 'https://demo.example.com',
-    //   githubUrl: 'https://github.com/example/project',
-    //   featured: false
-    // }
+    {
+      id: 5,
+      title: 'AsyncStandup AI',
+      status: 'DEPLOYED',
+      description: 'AI-powered standup assistant that helps teams stay organized and productive.',
+      image: '/asyncstandup.png',
+      tech: ['Next.js', 'React', 'Open AI', 'Supabase', 'PostgreSQL'],
+      demoUrl: 'https://asyncstandup-chi.vercel.app/',
+      githubUrl: 'https://github.com/Parmatma11',
+      featured: true
+    },
   ];
-
-  const categories = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'fullstack', label: 'Full Stack' },
-    { id: 'frontend', label: 'Frontend' },
-    { id: 'mobile', label: 'Mobile' },
-    { id: 'blockchain', label: 'Blockchain' }
-  ];
-
-  const filteredProjects = selectedCategory === 'all'
-    ? projects
-    : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-5" />
-
+    <section id="projects" className="py-24 relative overflow-hidden scanlines">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-orbitron font-bold text-4xl md:text-5xl lg:text-6xl mb-6 gradient-text">
-            Featured Projects
+        {/* Section Header */}
+        <div className="mb-16">
+          <h2 className="font-mono font-bold text-4xl md:text-5xl tracking-wider uppercase glow-text mb-4">
+            {'>'} // DEPLOYED_MISSIONS
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="text-lg text-muted-foreground mt-6 max-w-2xl mx-auto">
+          <div className="w-32 h-[1px] bg-phosphor/50 shadow-[0_0_10px_rgba(0,255,65,0.3)]" />
+          <p className="font-mono text-sm text-silver/60 mt-4 max-w-lg">
             Showcasing innovative solutions that push the boundaries of technology
           </p>
         </div>
 
-        {/* Category Filter */}
-        {/* <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`glass transition-all duration-300 ${
-                selectedCategory === category.id
-                  ? 'bg-gradient-to-r from-primary to-secondary text-primary-foreground glow-primary'
-                  : 'border-primary/20 text-primary hover:bg-primary/10'
-              }`}
-            >
-              {category.label}
-            </Button>
-          ))}
-        </div> */}
-
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
+        <div className="grid md:grid-cols-2 gap-6">
+          {projects.map((project) => (
             <div
               key={project.id}
-              className={`glass rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:scale-105 group ${project.featured ? 'md:col-span-2' : ''
-                }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="terminal-container group hover:border-phosphor/50 transition-all duration-75"
             >
-              {/* Project Image */}
-              <div className="relative h-48 bg-gradient-to-br from-primary/20 to-secondary/20 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    const nextElement = e.currentTarget.nextElementSibling as HTMLElement;
-                    if (nextElement) nextElement.style.display = 'flex';
-                    const fallbackElement = nextElement?.nextElementSibling as HTMLElement;
-                    if (fallbackElement) fallbackElement.style.display = 'flex';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 hidden" />
-                <div className="absolute inset-0 flex items-center justify-center hidden">
-                  <Play className="w-16 h-16 text-primary/50 group-hover:text-primary transition-colors duration-300" />
-                </div>
+              {/* Terminal Header */}
+              <div className="terminal-header flex items-center justify-between">
+                <span>[{project.title}] — STATUS: {project.status}</span>
                 {project.featured && (
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-accent to-secondary px-3 py-1 rounded-full text-xs font-semibold text-primary-foreground">
-                    Featured
-                  </div>
+                  <span className="bg-amber-term text-black px-2 py-0.5 text-[10px] font-bold tracking-wider"
+                    style={{ borderRadius: '1px' }}
+                  >
+                    FEATURED
+                  </span>
                 )}
               </div>
 
+              {/* Project Image */}
+              <div className="relative h-44 bg-surface-2 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-150"
+                  style={{ filter: 'hue-rotate(90deg) saturate(0.3) brightness(0.7)' }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                {/* Green scanline overlay on image */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-phosphor/5 to-surface-2/80" />
+                <div className="absolute inset-0" style={{
+                  background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.03) 2px, rgba(0,255,65,0.03) 4px)'
+                }} />
+              </div>
+
               {/* Project Content */}
-              <div className="p-6">
-                <h3 className="font-orbitron font-bold text-xl mb-3 text-foreground group-hover:gradient-text transition-all duration-300">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  {project.description}
+              <div className="terminal-body">
+                <p className="font-mono text-xs text-silver/70 mb-4 leading-relaxed">
+                  <span className="text-silver/30">// </span>{project.description}
                 </p>
 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
+                {/* Tech Tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-muted/20 rounded-full text-xs font-medium text-foreground border border-primary/10"
+                      className="font-mono text-[10px] px-2 py-1 text-phosphor/70 border border-phosphor/20 bg-surface-0 tracking-wider"
+                      style={{ borderRadius: '1px' }}
                     >
-                      {tech}
+                      [{tech}]
                     </span>
                   ))}
                 </div>
 
-                {/* Project Links */}
+                {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <Button
-                    size="sm"
-                    className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-primary-foreground"
+                  <button
+                    className="flex-1 btn-terminal btn-terminal-primary text-[10px] py-2 flex items-center justify-center gap-2"
                     onClick={() => window.open(project.demoUrl, '_blank')}
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="glass border-secondary/20 text-secondary hover:bg-secondary/10"
+                    <ExternalLink className="w-3 h-3" />
+                    LIVE_DEMO →
+                  </button>
+                  <button
+                    className="btn-terminal btn-terminal-secondary text-[10px] py-2 px-4 flex items-center justify-center"
                     onClick={() => window.open(project.githubUrl, '_blank')}
                   >
-                    <Github className="w-4 h-4" />
-                  </Button>
+                    <Github className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* View More Projects */}
+        {/* View All Projects */}
         <div className="text-center mt-12">
-          <Button
-            size="lg"
-            variant="outline"
-            className="glass border-primary/30 text-primary hover:bg-primary/10 px-8 py-4"
+          <button
+            className="btn-terminal btn-terminal-secondary text-xs"
             onClick={() => window.open('https://github.com/Parmatma11/', '_blank')}
           >
-            View All Projects on GitHub
-          </Button>
+            [ VIEW_ALL_PROJECTS → github.com/Parmatma11 ]
+          </button>
         </div>
       </div>
     </section>

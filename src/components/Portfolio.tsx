@@ -7,22 +7,21 @@ import ContactSection from './ContactSection';
 
 const Portfolio = () => {
   return (
-    <main className="relative">
+    <main className="relative bg-[#0A0A0A] min-h-screen crt-vignette animate-crt-flicker">
+      {/* Global CRT Scanline Overlay */}
+      <div
+        className="fixed inset-0 pointer-events-none z-[99]"
+        style={{
+          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.015) 2px, rgba(0,255,65,0.015) 4px)',
+        }}
+      />
+
       <Navigation />
       <HeroSection />
-      <ProjectsSection />
-      <SkillsSection />
       <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
       <ContactSection />
-      
-      {/* Footer */}
-      <footer className="py-8 border-t border-primary/10">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-muted-foreground">
-            © 2025 Krishan Kaushik. Crafted with passion and cutting-edge technology.
-          </p>
-        </div>
-      </footer>
     </main>
   );
 };

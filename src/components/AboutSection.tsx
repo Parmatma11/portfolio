@@ -4,84 +4,100 @@ const AboutSection = () => {
   const highlights = [
     {
       icon: Code,
-      title: "Clean Code",
+      cmd: '> CLEAN_CODE',
       description: "Writing maintainable, scalable, and efficient code that stands the test of time."
     },
     {
       icon: Rocket,
-      title: "Innovation",
+      cmd: '> INNOVATION',
       description: "Constantly exploring new technologies and pushing the boundaries of what's possible."
     },
     {
       icon: Users,
-      title: "Collaboration",
+      cmd: '> COLLABORATION',
       description: "Working seamlessly with teams to deliver exceptional user experiences."
     },
     {
       icon: Zap,
-      title: "Performance",
+      cmd: '> PERFORMANCE',
       description: "Optimizing applications for speed, accessibility, and user satisfaction."
     }
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-10" />
-
+    <section id="about" className="py-24 relative overflow-hidden scanlines">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-orbitron font-bold text-4xl md:text-5xl lg:text-6xl mb-6 gradient-text">
-            About Me
+        {/* Section Header */}
+        <div className="mb-16">
+          <h2 className="font-mono font-bold text-4xl md:text-5xl tracking-wider uppercase glow-text mb-4">
+            {'>'} ABOUT_ME
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
+          <div className="w-32 h-[1px] bg-phosphor/50 shadow-[0_0_10px_rgba(0,255,65,0.3)]" />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column: Profile Terminal */}
           <div className="space-y-6">
-            <div className="glass p-8 rounded-2xl border border-primary/10">
-              <h3 className="font-orbitron font-bold text-2xl md:text-3xl mb-6 gradient-text-secondary">
-                Crafting Digital Excellence
-              </h3>
-              <p className="text-lg leading-relaxed text-muted-foreground mb-6">
-                With over 1 years of experience in full-stack development, I specialize in creating
-                immersive web applications that blend cutting-edge technology with exceptional user experience.
-                My passion lies in transforming complex problems into elegant, intuitive solutions.
-              </p>
-              <p className="text-lg leading-relaxed text-muted-foreground">
-                When I'm not coding, you'll find me exploring the latest in AI, contributing to open-source
-                projects, or experimenting with new frameworks. I believe in continuous learning and staying
-                ahead of the technological curve.
-              </p>
+            <div className="terminal-container">
+              <div className="terminal-header">
+                [PROFILE.md]
+              </div>
+              <div className="terminal-body space-y-4">
+                <p className="font-mono text-sm text-silver/80 leading-relaxed">
+                  <span className="text-silver/40">// Bio</span>
+                  <br />
+                  With over 1 year of experience in full-stack development, I specialize in creating
+                  immersive web applications that blend cutting-edge technology with exceptional user experience.
+                  My passion lies in transforming complex problems into elegant, intuitive solutions.
+                </p>
+                <p className="font-mono text-sm text-silver/80 leading-relaxed">
+                  <span className="text-silver/40">// Interests</span>
+                  <br />
+                  When I'm not coding, you'll find me exploring the latest in AI, contributing to open-source
+                  projects, or experimenting with new frameworks. I believe in continuous learning and staying
+                  ahead of the technological curve.
+                </p>
+              </div>
             </div>
 
+            {/* Stats */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="glass p-6 rounded-xl border border-secondary/10 text-center">
-                <div className="font-orbitron font-bold text-3xl gradient-text mb-2">7+</div>
-                <div className="text-sm text-muted-foreground">Projects Completed</div>
+              <div className="terminal-container">
+                <div className="terminal-body text-center py-5">
+                  <div className="font-mono font-bold text-3xl text-phosphor glow-text mb-1">7+</div>
+                  <div className="font-mono text-[10px] text-silver/50 tracking-widest uppercase">PROJECTS_COMPLETED</div>
+                </div>
               </div>
-              <div className="glass p-6 rounded-xl border border-accent/10 text-center">
-                <div className="font-orbitron font-bold text-3xl gradient-text mb-2">1+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
+              <div className="terminal-container">
+                <div className="terminal-body text-center py-5">
+                  <div className="font-mono font-bold text-3xl text-cyan-term glow-text-cyan mb-1">1+</div>
+                  <div className="font-mono text-[10px] text-silver/50 tracking-widest uppercase">YEARS_ACTIVE</div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Right Column: Highlight Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {highlights.map((highlight, index) => (
               <div
-                key={highlight.title}
-                className="glass p-6 rounded-xl border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:scale-105 group"
+                key={highlight.cmd}
+                className="terminal-container group hover:border-phosphor/50 transition-all duration-75"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <highlight.icon className="w-6 h-6 text-primary-foreground" />
+                <div className="terminal-body">
+                  <div className="w-10 h-10 border border-phosphor/30 flex items-center justify-center mb-4 group-hover:border-phosphor/60 group-hover:shadow-[0_0_15px_rgba(0,255,65,0.2)] transition-all duration-75"
+                    style={{ borderRadius: '2px' }}
+                  >
+                    <highlight.icon className="w-5 h-5 text-phosphor" />
+                  </div>
+                  <h4 className="font-mono font-bold text-sm mb-2 text-phosphor tracking-wider">
+                    {highlight.cmd}
+                  </h4>
+                  <p className="font-mono text-xs text-silver/60 leading-relaxed">
+                    {highlight.description}
+                  </p>
                 </div>
-                <h4 className="font-orbitron font-bold text-lg mb-3 text-foreground">
-                  {highlight.title}
-                </h4>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {highlight.description}
-                </p>
               </div>
             ))}
           </div>
