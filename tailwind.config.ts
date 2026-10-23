@@ -19,8 +19,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				mono: ['"JetBrains Mono"', '"Fira Code"', '"Source Code Pro"', 'monospace'],
-				display: ['"Space Grotesk"', 'sans-serif'],
+				mono: ['"JetBrains Mono"', '"Fira Code"', 'monospace'],
+				display: ['"Manrope"', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -66,17 +66,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Terminal palette
-				phosphor: '#00FF41',
-				'cyan-term': '#00D4AA',
-				'amber-term': '#FFB000',
-				'red-term': '#FF3333',
-				silver: '#C0C0C0',
-				'surface-0': '#0A0A0A',
-				'surface-1': '#0D0D0D',
-				'surface-2': '#111111',
-				'surface-3': '#161616',
-				'surface-4': '#1A1A1A',
+				// Echo-inspired palette
+				cream: '#EDEBE6',
+				'cream-dim': '#E2DFD8',
+				ink: '#111111',
+				'ink-dim': '#6B6B66',
+				night: '#0B0D12',
+				'night-2': '#10131A',
+				'night-3': '#171B24',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

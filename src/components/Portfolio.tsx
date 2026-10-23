@@ -1,27 +1,28 @@
-import Navigation from './Navigation';
-import HeroSection from './HeroSection';
-import AboutSection from './AboutSection';
-import SkillsSection from './SkillsSection';
-import ProjectsSection from './ProjectsSection';
-import ContactSection from './ContactSection';
+import { useState } from 'react';
+import { useLenis } from '@/hooks/useLenis';
+import Preloader from './echo/Preloader';
+import Navbar from './echo/Navbar';
+import Hero from './echo/Hero';
+import About from './echo/About';
+import Experience from './echo/Experience';
+import Works from './echo/Works';
+import Services from './echo/Services';
+import Contact from './echo/Contact';
 
 const Portfolio = () => {
-  return (
-    <main className="relative bg-[#0A0A0A] min-h-screen crt-vignette animate-crt-flicker">
-      {/* Global CRT Scanline Overlay */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[99]"
-        style={{
-          background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.015) 2px, rgba(0,255,65,0.015) 4px)',
-        }}
-      />
+  const [loaded, setLoaded] = useState(false);
+  useLenis();
 
-      <Navigation />
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ContactSection />
+  return (
+    <main className="relative bg-cream">
+      {!loaded && <Preloader onComplete={() => setLoaded(true)} />}
+      <Navbar />
+      <Hero startAnimation={loaded} />
+      <About />
+      <Experience />
+      <Works />
+      <Services />
+      <Contact />
     </main>
   );
 };
