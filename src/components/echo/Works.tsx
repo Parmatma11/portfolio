@@ -25,8 +25,10 @@ const Works = () => {
   const applyLayout = () => {
     const raw = scrollFloat.current + dragOffset.current;
     const activeFloat = clamp(raw, 0, N - 1);
-    const spacing = cardSize.w * 0.62;
-    const waveAmplitude = cardSize.h * 0.4;
+    // Tight overlap (instead of a wide gap) so neighboring cards read as one
+    // continuous, fanned-out stack rather than separate floating boxes.
+    const spacing = cardSize.w * 0.42;
+    const waveAmplitude = cardSize.h * 0.22;
 
     projects.forEach((_, i) => {
       const offset = i - activeFloat;
@@ -36,18 +38,24 @@ const Works = () => {
       // horizontal position + a vertical sine bob + a gentle in-plane lean that follows the curve.
       const x = offset * spacing;
       const y = Math.sin(offset * (Math.PI / 2)) * waveAmplitude;
-      const rotateZ = clamp(-offset * 7, -18, 18);
-      const rotateY = clamp(-offset * 32, -64, 64);
+      const rotateZ = clamp(-offset * 6, -14, 14);
+      const rotateY = clamp(-offset * 30, -58, 58);
       const translateZ = -absOffset * 140;
       const scale = 1 - absOffset * 0.16;
       const opacity = 1 - absOffset * 0.14;
       const zIndex = Math.round(100 - absOffset * 10);
+
+      // Shadow eases off with distance from the active card so the whole
+      // stack reads as one lit scene instead of each card casting its own
+      // identical, hard-edged shadow.
+      const shadowStrength = clamp(1 - absOffset * 0.35, 0.25, 1);
 
       const el = cardRefs.current[i];
       if (el) {
         el.style.transform = `translate(-50%, -50%) translate3d(${x}px, ${y}px, ${translateZ}px) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) scale(${Math.max(0.5, scale)})`;
         el.style.opacity = `${Math.max(0.4, opacity)}`;
         el.style.zIndex = `${zIndex}`;
+        el.style.filter = `drop-shadow(0 ${18 * shadowStrength}px ${34 * shadowStrength}px rgba(0,0,0,${0.24 * shadowStrength}))`;
       }
     });
 
@@ -101,7 +109,7 @@ const Works = () => {
 
   const onPointerMove = (e: React.PointerEvent) => {
     if (!dragging.current) return;
-    const spacing = cardSize.w * 0.62;
+    const spacing = cardSize.w * 0.42;
     const delta = (e.clientX - dragStartX.current) / spacing;
     dragOffset.current = clamp(dragStartOffset.current - delta, -(N - 1), N - 1);
     applyLayout();
@@ -157,8 +165,7 @@ const Works = () => {
             key={project.id}
             ref={(el) => (cardRefs.current[i] = el)}
             onClick={() => focusCard(i)}
-            className="absolute top-1/2 left-1/2 w-[260px] h-[164px] sm:w-[420px] sm:h-[264px] md:w-[520px] md:h-[326px] lg:w-[580px] lg:h-[364px] rounded-lg overflow-hidden border border-ink/10 bg-ink/5 cursor-pointer group"
-            style={{ filter: 'drop-shadow(0 20px 36px rgba(0,0,0,0.22))' }}
+            className="absolute top-1/2 left-1/2 w-[260px] h-[164px] sm:w-[420px] sm:h-[264px] md:w-[520px] md:h-[326px] lg:w-[580px] lg:h-[364px] rounded-2xl overflow-hidden bg-ink/5 cursor-pointer group"
           >
             <img
               src={project.image}
@@ -169,6 +176,7 @@ const Works = () => {
                 e.currentTarget.style.display = 'none';
               }}
             />
+            <div className="absolute inset-0 ring-1 ring-inset ring-cream/10 rounded-2xl pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">
               <span className="label-mono text-cream text-xs sm:text-sm">{project.title}</span>
