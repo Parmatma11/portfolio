@@ -93,7 +93,7 @@ const Hero = ({ startAnimation }: HeroProps) => {
       data-theme="light"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-cream px-6"
     >
-      <div className="relative z-20 text-center">
+      <div className="relative z-20 text-center -translate-y-20 md:-translate-y-28">
         <h1 className="font-display font-extrabold uppercase leading-[0.88] tracking-tight text-[15vw] sm:text-[13vw] lg:text-[11.5vw]">
           <span ref={line1Ref} className="block text-ink">
             Explore My
@@ -114,15 +114,15 @@ const Hero = ({ startAnimation }: HeroProps) => {
       <div className="absolute z-0 top-[74%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[58vw] max-w-[460px] max-h-[520px] pointer-events-none">
         <div ref={orbRef} className="w-full h-full animate-float">
           <img
-            src="/krishan-hero.jpg"
+            src="/krishan-hero-transparent.png"
             alt={profile.name}
             className="w-full h-full object-cover"
             style={{
               filter: 'grayscale(100%) contrast(1.15)',
               WebkitMaskImage:
-                'radial-gradient(ellipse 62% 78% at 50% 36%, black 48%, transparent 92%)',
+                'radial-gradient(ellipse 60% 70% at 50% 38%, black 55%, transparent 95%)',
               maskImage:
-                'radial-gradient(ellipse 62% 78% at 50% 36%, black 48%, transparent 92%)',
+                'radial-gradient(ellipse 60% 70% at 50% 38%, black 55%, transparent 95%)',
             }}
           />
         </div>
