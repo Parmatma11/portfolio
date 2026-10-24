@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { profile } from '@/data/portfolio';
@@ -16,55 +16,74 @@ const Hero = ({ startAnimation }: HeroProps) => {
   const orbRef = useRef<HTMLDivElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
+  const scrollCtxRef = useRef<gsap.Context | null>(null);
+
+  // Hide everything before the first paint. The preloader's curtain-lift
+  // should reveal an already-hidden hero so the entrance timeline below is
+  // the only visible motion — otherwise the hero sits fully visible under
+  // the lifting curtain, then snaps back to hidden the instant it's exposed
+  // and fades in a second time.
+  useLayoutEffect(() => {
+    gsap.set([line1Ref.current, line2WrapRef.current], { y: 60, opacity: 0 });
+    gsap.set(orbRef.current, { opacity: 0, scale: 0.8 });
+    gsap.set(metaRef.current, { opacity: 0, y: 20 });
+  }, []);
 
   useEffect(() => {
     if (!startAnimation || hasAnimated.current) return;
     hasAnimated.current = true;
-
-    const tl = gsap.timeline({ delay: 0.1 });
-    tl.fromTo(line1Ref.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
-      .fromTo(line2WrapRef.current, { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
-      .fromTo(orbRef.current, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1, ease: 'power3.out' }, '-=0.6')
-      .fromTo(metaRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5');
-  }, [startAnimation]);
-
-  useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        [line1Ref.current, line2WrapRef.current],
-        { y: 0, opacity: 1 },
-        {
-          y: -60,
-          opacity: 0.2,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        }
-      );
-      gsap.fromTo(
-        orbRef.current,
-        { y: 0, scale: 1 },
-        {
-          y: -40,
-          scale: 0.9,
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        }
-      );
-    }, section);
+    const tl = gsap.timeline({
+      delay: 0.1,
+      onComplete: () => {
+        // Scroll-linked parallax is set up only once the entrance has
+        // settled, so it captures the real resting values (fully visible,
+        // no offset) as its baseline instead of racing the entrance tween.
+        if (!section) return;
+        scrollCtxRef.current = gsap.context(() => {
+          gsap.fromTo(
+            [line1Ref.current, line2WrapRef.current],
+            { y: 0, opacity: 1 },
+            {
+              y: -60,
+              opacity: 0.2,
+              scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+              },
+            }
+          );
+          gsap.fromTo(
+            orbRef.current,
+            { y: 0, scale: 1 },
+            {
+              y: -40,
+              scale: 0.9,
+              scrollTrigger: {
+                trigger: section,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+              },
+            }
+          );
+        }, section);
+      },
+    });
 
-    return () => ctx.revert();
-  }, []);
+    tl.to(line1Ref.current, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
+      .to(line2WrapRef.current, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.7')
+      .to(orbRef.current, { opacity: 1, scale: 1, duration: 1, ease: 'power3.out' }, '-=0.6')
+      .to(metaRef.current, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.5');
+
+    return () => {
+      tl.kill();
+      scrollCtxRef.current?.revert();
+    };
+  }, [startAnimation]);
 
   useEffect(() => {
     const section = sectionRef.current;
